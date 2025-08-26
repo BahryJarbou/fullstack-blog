@@ -33,7 +33,7 @@ const Home = () => {
               <h2 className="card-title">{post.title}</h2>
               <p>{post.desc}</p>
               <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
+                <button className="btn btn-primary">Read More</button>
               </div>
             </div>
           </div>
