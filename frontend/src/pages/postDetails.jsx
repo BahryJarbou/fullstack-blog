@@ -19,8 +19,8 @@ const PostDetails = () => {
             voluptatem et in. Quaerat fugiat ut assumenda excepturi
             exercitationem quasi. In deleniti eaque aut repudiandae et a id
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi. nisi.
+            excepturi exercitationem quasi. In deleniti eaque aut repudiandae a
+            id nisi. nisi.
           </p>
           <span className="flex gap-2">
             <button className="btn btn-primary w-[70px]">Update</button>
