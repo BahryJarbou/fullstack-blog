@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import {
   createPost,
   deletePost,
@@ -8,6 +9,7 @@ import {
 } from "./crudOperations.js";
 
 const app = express();
+app.use(cors());
 const port = 3000;
 
 app.get("/posts", getPosts);
