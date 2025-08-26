@@ -1,10 +1,8 @@
 const Footer = () => {
   return (
-    <div>
-      <footer className="  p-4 bg-purple-800 text-white">
-        <h1 className="text-center">Made with ❤️ by ✈️ Travel Tales</h1>
-      </footer>
-    </div>
+    <footer className="fixed bottom-0 left-0 w-full bg-purple-800 text-white text-center p-4">
+      <h1 className="text-center">Made with ❤️ by ✈️ Travel Tales</h1>
+    </footer>
   );
 };
 
