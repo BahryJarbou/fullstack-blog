@@ -6,7 +6,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://fakestoreapi.com/products");
+        const response = await fetch("http://localhost:3000/posts");
 
         if (!response.ok) {
           throw new Error("Something went wrong");
