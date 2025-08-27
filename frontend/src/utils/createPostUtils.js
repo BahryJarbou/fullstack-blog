@@ -1,5 +1,3 @@
-import { data } from "react-router";
-
 const submitAction = async (prevState, formData) => {
   const author = formData.get("author");
   const title = formData.get("title");
@@ -13,6 +11,7 @@ const submitAction = async (prevState, formData) => {
 
   console.log("submitted", { author, title, content, cover });
   const res = await sendPostData({ author, title, content, cover });
+  console.log("we reached here");
   alert(`${res.message}:  '${res.data.author}', titled: '${res.data.title}'`);
   return { error: null, success: true };
 };
@@ -30,8 +29,6 @@ const validate = ({ author, title, content, cover }) => {
   return newErrors;
 };
 
-export default submitAction;
-
 const sendPostData = async ({ author, title, content, cover }) => {
   const body = { author, title, content, cover };
   try {
@@ -48,3 +45,5 @@ const sendPostData = async ({ author, title, content, cover }) => {
     return { message: "something went wrong!", data: e };
   }
 };
+
+export default submitAction;
