@@ -11,10 +11,19 @@ const PostDetails = () => {
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            a id nisi. Provident cupiditate voluptatem et in. Quaerat fugiat ut
+            assumenda excepturi exercitationem quasi. In deleniti eaque aut
+            repudiandae et a id nisi. Provident cupiditate voluptatem et in.
+            Quaerat fugiat ut assumenda excepturi exercitationem quasi. In
+            deleniti eaque aut repudiandae et a id nisi. Provident cupiditate
+            voluptatem et in. Quaerat fugiat ut assumenda excepturi
+            exercitationem quasi. In deleniti eaque aut repudiandae et a id
+            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+            excepturi exercitationem quasi. In deleniti eaque aut repudiandae a
+            id nisi. nisi.
           </p>
-          <span className="flex gap-2 w-">
-            <button className="btn btn-primary w-[70px]">Edit</button>
+          <span className="flex gap-2">
+            <button className="btn btn-primary w-[70px]">Update</button>
             <button className="btn btn-primary w-[70px]">Delete</button>
           </span>
           <div className=" flex gap-2 items-center mt-4 ">
@@ -24,8 +33,8 @@ const PostDetails = () => {
               className="h-[30px] w-[30px] rounded-full object-cover "
             />
             <div>
-              <span className="">Peter John</span>
-              <p className="text-sm"> Posted 2 days ago</p>
+              <span className="font-bold">Peter John</span>
+              <p className="text-xs font-light "> Posted 2 days ago</p>
             </div>
           </div>
         </div>
