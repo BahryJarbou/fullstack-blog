@@ -53,7 +53,7 @@ const createPost = async (req, res) => {
     const client = new Client({
       connectionString: process.env.PG_URI,
     });
-    client.connect();
+    await client.connect();
     const results = await client.query(
       "INSERT INTO posts (author, title, content, cover) VALUES($1, $2, $3, $4) RETURNING *;",
       [
@@ -63,6 +63,8 @@ const createPost = async (req, res) => {
         parsedBody.cover,
       ]
     );
+    await client.end();
+    console.log("sending response");
     res.statusCode = 201;
     res.json(results.rows[0]);
   } catch (e) {
