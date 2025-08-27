@@ -4,7 +4,7 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    (async () => {
       try {
         const response = await fetch("http://localhost:3000/posts");
 
@@ -16,8 +16,7 @@ const Home = () => {
       } catch (error) {
         console.error(error);
       }
-    };
-    fetchData();
+    })();
   }, []);
   return (
     <div className="grid grid-cols-3 gap-4 p-4">
