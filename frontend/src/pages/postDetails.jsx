@@ -33,8 +33,8 @@ const PostDetails = () => {
               className="h-[30px] w-[30px] rounded-full object-cover "
             />
             <div>
-              <span>Peter John</span>
-              <p className="text-sm"> Posted 2 days ago</p>
+              <span className="font-bold">Peter John</span>
+              <p className="text-xs font-light "> Posted 2 days ago</p>
             </div>
           </div>
         </div>
