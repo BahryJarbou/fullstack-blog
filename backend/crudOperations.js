@@ -11,15 +11,6 @@ const getPosts = async (req, res) => {
     const results = await client.query("SELECT * FROM posts;");
     await client.end();
     res.statusCode = 200;
-    res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
-    res.setHeader(
-      "Access-Control-Allow-Methods",
-      "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-    );
-    res.setHeader(
-      "Access-Control-Allow-Headers",
-      "X-Requested-With,Access-Control-Request-Headers,Content-Type"
-    );
     res.json(results.rows);
   } catch (e) {
     console.log(e);

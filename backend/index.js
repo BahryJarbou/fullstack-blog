@@ -9,8 +9,8 @@ import {
 } from "./crudOperations.js";
 
 const app = express();
-app.use(cors());
 const port = 3000;
+app.use(cors());
 
 app.get("/posts", getPosts);
 app.get("/posts/:id", getPostById);
