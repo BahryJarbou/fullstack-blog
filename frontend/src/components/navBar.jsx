@@ -17,7 +17,7 @@ const NavBar = () => {
           </li>
           <li>
             <Link to="/about">
-              <label className="btn btn-neutral min-w-[5vw]">Blog</label>
+              <label className="btn btn-neutral min-w-[5vw]">About</label>
             </Link>
           </li>
         </ul>
