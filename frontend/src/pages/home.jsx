@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
+import PostCard from "../components/postCard.jsx";
+import { PostsContext } from "../context/postsContext.jsx";
 
 const Home = () => {
-  const [posts, setPosts] = useState([]);
+  const { posts, setPosts } = use(PostsContext);
 
   useEffect(() => {
     (async () => {
@@ -17,24 +19,11 @@ const Home = () => {
         console.error(error);
       }
     })();
-  }, []);
+  }, [posts]);
   return (
-    <div className="grid grid-cols-3 gap-4 p-4">
+    <div className="grid grid-cols-3 gap-4 p-4 min-h-screen">
       {posts.map((post) => (
-        <div>
-          <div className="card bg-base-100 w-96 shadow-sm" key={post.id}>
-            <figure>
-              <img src={post.cover} alt={post.title} />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{post.title}</h2>
-              <p>{post.content}</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Read More</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <PostCard key={post.id} post={post} />
       ))}
     </div>
   );

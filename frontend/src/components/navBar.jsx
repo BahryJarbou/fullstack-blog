@@ -1,16 +1,24 @@
+import { Link } from "react-router";
+
 const NavBar = () => {
   return (
-    <nav className="sticky top-0 z-50 navbar bg-purple-800  text-amber-50 shadow-sm">
+    <nav className="z-50 navbar bg-purple-800  text-amber-50 shadow-sm flex justify-between">
       <div className="navbar-start">
-        <a className="btn btn-ghost text-xl">✈️ Travel Tales</a>
+        <Link to="/">
+          <label className="btn btn-ghost text-xl">✈️ Travel Tales</label>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>About</a>
+            <Link to="/createPost">
+              <label className="btn btn-neutral">create Post</label>
+            </Link>
           </li>
           <li>
-            <a>Blog</a>
+            <Link to="/about">
+              <label className="btn btn-neutral min-w-[5vw]">Blog</label>
+            </Link>
           </li>
         </ul>
       </div>
