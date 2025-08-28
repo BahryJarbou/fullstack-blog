@@ -11,18 +11,18 @@ const validate = ({ author, title, content, cover }) => {
   return newErrors;
 };
 
-const sendPostData = async ({ author, title, content, cover }) => {
+const sendPostData = async ({ author, title, content, cover, id }) => {
   const body = { author, title, content, cover };
   try {
-    const res = await fetch("http://localhost:3000/posts", {
-      method: "POST",
+    const res = await fetch(`http://localhost:3000/posts/${id}`, {
+      method: "PUT",
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
       },
     });
     const data = await res.json();
-    return { message: "Post created successfully! by", data: data };
+    return { message: "Post updated successfully! by", data: data };
   } catch (e) {
     return { message: "something went wrong!", data: e };
   }

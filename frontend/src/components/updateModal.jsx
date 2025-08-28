@@ -1,9 +1,11 @@
 import { useState, useEffect, useActionState } from "react";
-import { validate, sendPostData } from "../utils/createPostUtils.js";
+import { validate, sendPostData } from "../utils/updateModalUtils.js";
 import { PostsContext } from "../context/postsContext.jsx";
 import { use } from "react";
-const CreatePost = () => {
+import { PostContext } from "../context/postContext.jsx";
+const UpdateModal = ({ id }) => {
   const { setPosts } = use(PostsContext);
+  const { post, setPost } = use(PostContext);
   const submitAction = async (prevState, formData) => {
     const author = formData.get("author");
     const title = formData.get("title");
@@ -16,20 +18,35 @@ const CreatePost = () => {
     }
 
     console.log("submitted", { author, title, content, cover });
-    const res = await sendPostData({ author, title, content, cover });
-    setPosts((prev) => {
-      prev.push(res.data);
+    const res = await sendPostData({ author, title, content, cover, id });
+    setPost({
+      ...post,
+      author: res.data.author,
+      title: res.data.title,
+      content: res.data.content,
+      cover: res.data.cover,
     });
     alert(`${res.message}:  '${res.data.author}', titled: '${res.data.title}'`);
     return { error: null, success: true };
   };
+
   const [state, formAction, isPending] = useActionState(submitAction, {});
   const [{ author, title, content, cover }, setFormData] = useState({
-    author: "",
-    title: "",
-    content: "",
-    cover: "",
+    author: post.author,
+    title: post.title,
+    content: post.content,
+    cover: post.cover,
   });
+
+  useEffect(() => {
+    setFormData({
+      author: post.author,
+      title: post.title,
+      content: post.content,
+      cover: post.cover,
+    });
+  }, [post]);
+  // console.log({ author, title, content, cover });
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -37,29 +54,22 @@ const CreatePost = () => {
     }));
   };
 
-  useEffect(() => {
-    if (state.success) {
-      setFormData({
-        author: "",
-        title: "",
-        content: "",
-        cover: "",
-      });
-    }
-  }, [state]);
-
+  // // useEffect(() => {
+  // //   if (state.success) {
+  // //     setFormData({
+  // //       author: "",
+  // //       title: "",
+  // //       content: "",
+  // //       cover: "",
+  // //     });
+  // //   }
+  // }, [state]);
   return (
     <div
       className="hero bg-[url('https://static.vecteezy.com/system/resources/previews/025/871/495/non_2x/travel-destination-background-and-template-design-with-travel-destinations-and-famous-landmarks-and-attractions-for-tourism-let-s-go-travel-illustration-vector.jpg')] min-h-screen min-w-[80%]"
       data-theme="nord"
     >
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Save A Memory!</h1>
-          <p className="py-6">
-            Create A Post And Have all Your Adventures Safe
-          </p>
-        </div>
         <div className="card card-xl bg-base-100 w-full max-w-sm shrink-0 shadow-2xl min-w-[60vw]">
           <div className="card-body">
             <form action={formAction} className="fieldset min-w-[60vw]">
@@ -70,7 +80,7 @@ const CreatePost = () => {
                   value={author}
                   onChange={handleChange}
                   className="input input-md min-w-[50vw]"
-                  placeholder="Who's writing?"
+                  placeholder={author}
                 />
                 {state.error?.author && (
                   <p className="text-sm text-red-600 mt-1">
@@ -85,7 +95,7 @@ const CreatePost = () => {
                   value={title}
                   onChange={handleChange}
                   className="input input-md min-w-[50vw]"
-                  placeholder="Enter a title"
+                  placeholder={title}
                 />
                 {state.error?.title && (
                   <p className="text-sm text-red-600 mt-1">
@@ -100,7 +110,7 @@ const CreatePost = () => {
                   value={cover}
                   onChange={handleChange}
                   className="input input-md min-w-[50vw]"
-                  placeholder="Add a photo URL"
+                  placeholder={cover}
                 />
                 {state.error?.cover && (
                   <p className="text-sm text-red-600 mt-1">
@@ -116,7 +126,7 @@ const CreatePost = () => {
                   rows={10}
                   onChange={handleChange}
                   className="textarea textarea-md min-w-[50vw]"
-                  placeholder="Tell us how was your visit"
+                  placeholder={content}
                 />
                 {state.error?.content && (
                   <p className="text-sm text-red-600 mt-1">
@@ -133,7 +143,7 @@ const CreatePost = () => {
                 }`}
                 disabled={isPending}
               >
-                {isPending ? "Submitting..." : "Submit"}
+                {isPending ? "Updating..." : "Update"}
               </button>
             </form>
           </div>
@@ -143,4 +153,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default UpdateModal;
