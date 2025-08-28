@@ -3,7 +3,7 @@ import { validate, sendPostData } from "../utils/createPostUtils.js";
 import { PostsContext } from "../context/postsContext.jsx";
 import { use } from "react";
 const CreatePost = () => {
-  const { setPosts } = use(PostsContext);
+  const { posts, setPosts } = use(PostsContext);
   const submitAction = async (prevState, formData) => {
     const author = formData.get("author");
     const title = formData.get("title");
@@ -17,9 +17,8 @@ const CreatePost = () => {
 
     console.log("submitted", { author, title, content, cover });
     const res = await sendPostData({ author, title, content, cover });
-    setPosts((prev) => {
-      prev.push(res.data);
-    });
+    console.log(res.data);
+    setPosts(() => [...posts, res.data]);
     alert(`${res.message}:  '${res.data.author}', titled: '${res.data.title}'`);
     return { error: null, success: true };
   };

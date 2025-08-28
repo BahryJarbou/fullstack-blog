@@ -14,7 +14,7 @@ const Home = () => {
           throw new Error("Something went wrong");
         }
         const data = await response.json();
-        setPosts(data);
+        setPosts(() => data);
       } catch (error) {
         console.error(error);
       }
